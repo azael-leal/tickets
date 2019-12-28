@@ -2,3 +2,15 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.one-to-one-spacer {
+  flex: 1 1 auto;
+}
+
+h1 {
+  margin: 20px 0px;
+}
+
+mat-form-field {
+  width: 100%;
+}

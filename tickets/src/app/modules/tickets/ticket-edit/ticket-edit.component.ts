@@ -12,4 +12,6 @@ export class TicketEditComponent implements OnInit {
   ngOnInit() {
   }
 
+  save() {}
+
 }
