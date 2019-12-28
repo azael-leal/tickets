@@ -1,24 +1,13 @@
-<div class="row">
-  <div class="col-3">
-    <button mat-button [routerLink]="['/tickets/home']" routerLinkActive="router-link-active">
-      Ticket Home
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Ticket System</span>
+
+    <span class="one-to-one-spacer"></span>
+
+    <button mat-icon-button [routerLink]="['/tickets/home']" routerLinkActive="router-link-active"  aria-label="Go to Home" matTooltip="Go to Home">
+      <mat-icon aria-hidden="false" aria-label="Home">home</mat-icon>
     </button>
-  </div>
-  <div class="col-3">
-    <button mat-button [routerLink]="['/tickets/list']" routerLinkActive="router-link-active">
-      Ticket List
-    </button>
-  </div>
-  <div class="col-3">
-    <button mat-button [routerLink]="['/tickets/ticket/create']" routerLinkActive="router-link-active">
-      Ticket Create
-    </button>
-  </div>
-  <div class="col-3">
-    <button mat-button [routerLink]="['/tickets/ticket/edit/0']" routerLinkActive="router-link-active">
-      Ticket Edit
-    </button>
-  </div>
-</div>
+  </mat-toolbar-row>
+</mat-toolbar>
 
 <router-outlet></router-outlet>
