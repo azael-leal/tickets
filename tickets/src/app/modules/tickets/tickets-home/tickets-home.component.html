@@ -1,1 +1,17 @@
-<p>tickets-home works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h1>Tickets List</h1>
+    </div>
+
+    <div class="col-12 text-right">
+      <button mat-raised-button color="primary" [routerLink]="['/tickets/ticket/create']">Create Ticket</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <app-tickets-list></app-tickets-list>
+    </div>
+  </div>
+</div>
