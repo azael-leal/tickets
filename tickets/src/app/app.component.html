@@ -1,1 +1,24 @@
+<div class="row">
+  <div class="col-3">
+    <button mat-button [routerLink]="['/tickets/home']" routerLinkActive="router-link-active">
+      Ticket Home
+    </button>
+  </div>
+  <div class="col-3">
+    <button mat-button [routerLink]="['/tickets/list']" routerLinkActive="router-link-active">
+      Ticket List
+    </button>
+  </div>
+  <div class="col-3">
+    <button mat-button [routerLink]="['/tickets/ticket/create']" routerLinkActive="router-link-active">
+      Ticket Create
+    </button>
+  </div>
+  <div class="col-3">
+    <button mat-button [routerLink]="['/tickets/ticket/edit/0']" routerLinkActive="router-link-active">
+      Ticket Edit
+    </button>
+  </div>
+</div>
+
 <router-outlet></router-outlet>
