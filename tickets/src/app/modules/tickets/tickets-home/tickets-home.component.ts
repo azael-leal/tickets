@@ -9,7 +9,6 @@ export class TicketsHomeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }
