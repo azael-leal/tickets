@@ -20,7 +20,7 @@ import { TicketEditComponent,  } from '../ticket-edit/ticket-edit.component';
 })
 export class TicketsListComponent implements OnInit {
 
-  displayedColumns = ['id', 'provider', 'amount', 'currency', 'date', 'comment', 'edit'];
+  displayedColumns = ['id', 'provider', 'amount', 'currency', 'date', 'comment', 'edit', 'delete'];
   dataSource = new MatTableDataSource<ITickets>([]);
   @ViewChild(MatTable, {static: false}) matTable: MatTable<any>;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;

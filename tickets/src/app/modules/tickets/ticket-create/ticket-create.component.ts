@@ -34,7 +34,7 @@ export class TicketCreateComponent implements OnInit {
     this.ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
   }
 
-  async save() {
+  async createTicket() {
     try {
       const saveTicket = await this.ticketService.createTicket(this.ticket);
       this.router.navigate(['/tickets/home']);
