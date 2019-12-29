@@ -51,5 +51,8 @@ export class TicketService {
     return tickets;
   }
 
+  saveTicket() {}
+
+  updateTicket() {}
 
 }
