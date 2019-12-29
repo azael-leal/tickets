@@ -17,6 +17,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 /* End SnackBar Messages */
 
+.container-fluid {
+  padding: 0px 40px;
+}
+
 .one-to-one-spacer {
   flex: 1 1 auto;
 }

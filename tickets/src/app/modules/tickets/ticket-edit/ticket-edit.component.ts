@@ -35,7 +35,7 @@ export class TicketEditComponent implements OnInit {
     this.ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
   }
 
-  async save() {
+  async updateTicket() {
     try {
       const updateTicket = await this.ticketService.updateTicket(this.ticket);
     } catch (error) {
