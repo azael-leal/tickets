@@ -1,18 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+
+// Interfaces
+import { ITicket } from '../interfaces/export-interfaces';
+
+// Services
 import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TicketService {
+export class TicketService extends BaseService {
 
   // private URL_GET_DEMORA = this.IP_SEGUIMIENTOS_API + 'Delay/';
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+    super();
+  }
 
   // getTickets(): Promise<any> {
   //   return this.http.get<any>(this.URL_GET_DEMORA, httpOptions)
@@ -51,8 +58,10 @@ export class TicketService {
     return tickets;
   }
 
-  saveTicket() {}
+  createTicket(ticket: ITicket) {}
 
-  updateTicket() {}
+  updateTicket(ticket: ITicket) {}
+
+  deleteTicket(ticketId: number) {}
 
 }

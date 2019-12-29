@@ -7,7 +7,7 @@ import { take } from 'rxjs/operators';
 import { ITicket } from 'src/app/interfaces/export-interfaces';
 
 // Services
-
+import { TicketService } from 'src/app/services/export-services';
 
 @Component({
   selector: 'app-ticket-edit',
@@ -22,6 +22,7 @@ export class TicketEditComponent implements OnInit {
 
   constructor(
     private ngZone: NgZone,
+    private ticketService: TicketService,
     private dialog: MatDialogRef<TicketEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
@@ -33,6 +34,12 @@ export class TicketEditComponent implements OnInit {
     this.ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
   }
 
-  save() {}
+  async save() {
+    try {
+      const updateTicket = await this.ticketService.updateTicket(this.ticket);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
 }
