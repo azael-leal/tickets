@@ -5,49 +5,55 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-3">
-      <mat-form-field appearance="outline">
-        <mat-label>Provider</mat-label>
-        <input matInput placeholder="Enter a provider">
-      </mat-form-field>
-    </div>
+  <form name="form" id="form" class="form" #form="ngForm">
+    <div class="row">
+      <div class="col-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Provider</mat-label>
+          <input matInput [required]="true" name="provider" id="provider" placeholder="Enter a provider"
+            [(ngModel)]="ticket.provider">
+        </mat-form-field>
+      </div>
 
-    <div class="col-3">
-      <mat-form-field appearance="outline">
-        <mat-label>Amount</mat-label>
-        <input matInput placeholder="Enter an amount">
-      </mat-form-field>
-    </div>
+      <div class="col-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Amount</mat-label>
+          <input matInput [required]="true" name="amount" id="amount" placeholder="Enter an amount"
+            [(ngModel)]="ticket.amount">
+        </mat-form-field>
+      </div>
 
-    <div class="col-3">
-      <mat-form-field appearance="outline">
-        <mat-label>Currency</mat-label>
-        <input matInput placeholder="Enter a currency">
-      </mat-form-field>
-    </div>
+      <div class="col-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Currency</mat-label>
+          <input matInput [required]="true" name="currency" id="currency" placeholder="Enter a currency"
+            [(ngModel)]="ticket.currency">
+        </mat-form-field>
+      </div>
 
-    <div class="col-3">
-      <mat-form-field appearance="outline">
-        <mat-label>Date</mat-label>
-        <input matInput placeholder="Pick a date">
-      </mat-form-field>
-    </div>
+      <div class="col-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Date</mat-label>
+          <input matInput [required]="true" name="date" id="date" placeholder="Pick a date" [(ngModel)]="ticket.date">
+        </mat-form-field>
+      </div>
 
-    <div class="col-12">
-      <mat-form-field appearance="outline">
-        <mat-label>Comment</mat-label>
-        <input matInput placeholder="Enter a comment">
-      </mat-form-field>
+      <div class="col-12">
+        <mat-form-field appearance="outline">
+          <mat-label>Comment</mat-label>
+          <textarea matInput [required]="true" name="comment" id="comment" placeholder="Enter a comment"
+            [(ngModel)]="ticket.comment" cdkTextareaAutosize #autosize="cdkTextareaAutosize"></textarea>
+        </mat-form-field>
+      </div>
     </div>
-  </div>
+  </form>
 
   <div class="row">
     <div class="col-6 text-left">
       <button mat-stroked-button [routerLink]="['/tickets/home']">Back</button>
     </div>
     <div class="col-6 text-right">
-      <button mat-flat-button color="primary" (click)="save()">Save</button>
+      <button mat-flat-button color="primary" (click)="save()" [disabled]="form.invalid">Save</button>
     </div>
   </div>
 </div>
