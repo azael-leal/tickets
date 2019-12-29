@@ -1,0 +1,17 @@
+<h1 mat-dialog-title *ngIf="data.title != null">
+  {{ data.title }}
+  <mat-divider></mat-divider>
+</h1>
+
+<mat-dialog-content *ngIf="data.message != null">
+  {{ data.message }}
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-stroked-button [mat-dialog-close] color="warn">Cancel</button>
+
+  <span class="one-to-one-spacer"></span>
+
+  <button *ngIf="data.confirmButtonName == null" mat-flat-button color="primary" [mat-dialog-close]="true">Accept</button>
+  <button *ngIf="data.confirmButtonName != null" mat-flat-button color="primary" [mat-dialog-close]="true">{{ data.confirmButtonName }}</button>
+</mat-dialog-actions>

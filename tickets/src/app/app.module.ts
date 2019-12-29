@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './shared/material/material.module';
 
 import { AppComponent } from './app.component';
+import { ConfirmDialogComponent } from './shared/dialogs/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
