@@ -1,13 +1,13 @@
 import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 
 // Interfaces
 import { ITicket } from 'src/app/interfaces/export-interfaces';
 
 // Services
-import { TicketService } from '../../../services/export-services';
-import { Router } from '@angular/router';
+import { TicketService, SnackbarService } from '../../../services/export-services';
 
 @Component({
   selector: 'app-ticket-create',
@@ -23,7 +23,8 @@ export class TicketCreateComponent implements OnInit {
   constructor(
     private ngZone: NgZone,
     private router: Router,
-    private ticketService: TicketService
+    private ticketService: TicketService,
+    private snackBarService: SnackbarService,
   ) { }
 
   ngOnInit() {
@@ -38,7 +39,7 @@ export class TicketCreateComponent implements OnInit {
       const saveTicket = await this.ticketService.createTicket(this.ticket);
       this.router.navigate(['/tickets/home']);
     } catch (error) {
-      console.log(error);
+      this.snackBarService.openError(error)
     }
   }
 

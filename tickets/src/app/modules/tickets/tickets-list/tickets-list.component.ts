@@ -7,10 +7,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { ITickets } from '../../../interfaces/export-interfaces';
 
 // Services
-import { TicketService } from '../../../services/export-services';
+import { TicketService, SnackbarService } from '../../../services/export-services';
 
 // Dialogs - Components
-import { TicketEditComponent } from '../ticket-edit/ticket-edit.component';
+import { TicketEditComponent,  } from '../ticket-edit/ticket-edit.component';
 
 
 @Component({
@@ -27,16 +27,22 @@ export class TicketsListComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private ticketService: TicketService
+    private ticketService: TicketService,
+    private snackBarService: SnackbarService
   ) { }
 
   ngOnInit() {
     this.getTickets();
   }
 
-  getTickets() {
-    const tickets: ITickets[] = this.ticketService.getTickets();
-    this.matchDataWithTable(tickets);
+  getTickets(action?: string) {
+    try {
+      const tickets: ITickets[] = this.ticketService.getTickets();
+      this.matchDataWithTable(tickets);
+      if (action === 'updateTable') { this.snackBarService.openSuccess('Table Updated'); }
+    } catch (error) {
+      this.snackBarService.openError(error);
+    }
   }
 
   private matchDataWithTable(data: ITickets[]) {
@@ -49,7 +55,7 @@ export class TicketsListComponent implements OnInit {
     try {
       const deleteTicket = await this.ticketService.deleteTicket(ticketId);
     } catch (error) {
-      console.log(error);
+      this.snackBarService.openError(error);
     }
   }
 

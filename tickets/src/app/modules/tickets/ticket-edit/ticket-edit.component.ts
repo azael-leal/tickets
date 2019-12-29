@@ -7,7 +7,7 @@ import { take } from 'rxjs/operators';
 import { ITicket } from 'src/app/interfaces/export-interfaces';
 
 // Services
-import { TicketService } from 'src/app/services/export-services';
+import { TicketService, SnackbarService } from 'src/app/services/export-services';
 
 @Component({
   selector: 'app-ticket-edit',
@@ -23,6 +23,7 @@ export class TicketEditComponent implements OnInit {
   constructor(
     private ngZone: NgZone,
     private ticketService: TicketService,
+    private snackBarService: SnackbarService,
     private dialog: MatDialogRef<TicketEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
@@ -38,7 +39,7 @@ export class TicketEditComponent implements OnInit {
     try {
       const updateTicket = await this.ticketService.updateTicket(this.ticket);
     } catch (error) {
-      console.log(error);
+      this.snackBarService.openError(error);
     }
   }
 
