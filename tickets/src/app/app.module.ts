@@ -8,9 +8,6 @@ import { MaterialModule } from './shared/material/material.module';
 
 import { AppComponent } from './app.component';
 
-import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogConfig } from '@angular/material/dialog';
-import { TicketEditComponent } from './modules/tickets/ticket-edit/ticket-edit.component';
-
 @NgModule({
   declarations: [
     AppComponent
