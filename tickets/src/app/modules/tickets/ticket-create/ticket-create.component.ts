@@ -6,7 +6,8 @@ import { take } from 'rxjs/operators';
 import { ITicket } from 'src/app/interfaces/export-interfaces';
 
 // Services
-
+import { TicketService } from '../../../services/export-services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ticket-create',
@@ -21,6 +22,8 @@ export class TicketCreateComponent implements OnInit {
 
   constructor(
     private ngZone: NgZone,
+    private router: Router,
+    private ticketService: TicketService
   ) { }
 
   ngOnInit() {
@@ -30,6 +33,13 @@ export class TicketCreateComponent implements OnInit {
     this.ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
   }
 
-  save() {}
+  async save() {
+    try {
+      const saveTicket = await this.ticketService.createTicket(this.ticket);
+      this.router.navigate(['/tickets/home']);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
 }

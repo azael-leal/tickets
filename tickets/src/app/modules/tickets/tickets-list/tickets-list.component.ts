@@ -26,8 +26,8 @@ export class TicketsListComponent implements OnInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
   constructor(
-    private ticketService: TicketService,
     private dialog: MatDialog,
+    private ticketService: TicketService
   ) { }
 
   ngOnInit() {
@@ -43,6 +43,14 @@ export class TicketsListComponent implements OnInit {
     this.dataSource = new MatTableDataSource<ITickets>(data);
     this.dataSource.paginator = this.paginator;
     // this.matTable.renderRows();
+  }
+
+  async deleteTicket(ticketId: number) {
+    try {
+      const deleteTicket = await this.ticketService.deleteTicket(ticketId);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   openEditTicketDialog(ticketId: number) {
