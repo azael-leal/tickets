@@ -11,6 +11,7 @@ import { TicketService, SnackbarService } from '../../../services/export-service
 
 // Dialogs - Components
 import { TicketEditComponent,  } from '../ticket-edit/ticket-edit.component';
+import { ConfirmDialogComponent } from '../../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 
 
 @Component({
@@ -51,12 +52,28 @@ export class TicketsListComponent implements OnInit {
     // this.matTable.renderRows();
   }
 
-  async deleteTicket(ticketId: number) {
+  private async deleteTicket(ticketId: number) {
     try {
       const deleteTicket = await this.ticketService.deleteTicket(ticketId);
     } catch (error) {
       this.snackBarService.openError(error);
     }
+  }
+
+  openConfirmDeleteTicketDialog(ticketId: number) {
+    const deleteTicketDialog = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Delete Ticket',
+        message: `Are you sure you want to delete permanently the ticket #${ticketId}?`
+      }
+    });
+
+    deleteTicketDialog.afterClosed().subscribe( result => {
+      if (result) {
+        this.deleteTicket(ticketId);
+        this.getTickets();
+      }
+    });
   }
 
   openEditTicketDialog(ticketId: number) {

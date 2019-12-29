@@ -28,8 +28,7 @@ export class TicketEditComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   triggerResize() {
     this.ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));

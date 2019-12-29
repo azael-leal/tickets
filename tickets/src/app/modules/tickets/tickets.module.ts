@@ -10,10 +10,17 @@ import { TicketsHomeComponent } from './tickets-home/tickets-home.component';
 import { TicketsListComponent } from './tickets-list/tickets-list.component';
 import { TicketCreateComponent } from './ticket-create/ticket-create.component';
 import { TicketEditComponent } from './ticket-edit/ticket-edit.component';
+import { ConfirmDialogComponent } from '../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 
 
 @NgModule({
-  declarations: [TicketsHomeComponent, TicketsListComponent, TicketCreateComponent, TicketEditComponent],
+  declarations: [
+    TicketsHomeComponent,
+    TicketsListComponent,
+    TicketCreateComponent,
+    TicketEditComponent,
+    ConfirmDialogComponent
+  ],
   imports: [
     CommonModule,
     TicketsRoutingModule,
@@ -28,7 +35,8 @@ import { TicketEditComponent } from './ticket-edit/ticket-edit.component';
     }
   ],
   entryComponents: [
-    TicketEditComponent
+    TicketEditComponent,
+    ConfirmDialogComponent
   ]
 })
 export class TicketsModule { }
