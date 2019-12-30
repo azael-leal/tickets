@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-6 text-left">
+    <button mat-stroked-button color="primary" (click)="getTickets('refreshData')">Refresh Data</button>
+  </div>
+  <div class="col-6 text-right">
+    <button mat-flat-button color="primary" [routerLink]="['/tickets/ticket/create']">Create Ticket</button>
+  </div>
+
+  <div class="col-12">
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> Id </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="provider">
+          <th mat-header-cell *matHeaderCellDef> Provider </th>
+          <td mat-cell *matCellDef="let element"> {{element.provider}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef> Amount </th>
+          <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="currency">
+          <th mat-header-cell *matHeaderCellDef> Currency </th>
+          <td mat-cell *matCellDef="let element"> {{element.currency}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.date | date: 'fullDate' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="comment">
+          <th mat-header-cell *matHeaderCellDef> Comment </th>
+          <td mat-cell *matCellDef="let element"> {{element.comment}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef width="100px"> Edit </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-stroked-button (click)="openEditTicketDialog(element.id)">
+              <mat-icon aria-label="Edit">edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef width="40px"> Delete </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-stroked-button (click)="openConfirmDeleteTicketDialog(element.id)">
+              <mat-icon aria-label="Delete">delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[10, 20, 50]" [pageSize]="10" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+</div>

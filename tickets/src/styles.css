@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* SnackBar Messages */
+.snackbar-error {
+  background-color: #f44336;
+}
+
+.snackbar-success {
+  background-color: #4caf50;
+}
+
+.snackbar-warning {
+  background-color: #ff9800;
+}
+/* End SnackBar Messages */
+
+.container-fluid {
+  padding: 0px 40px;
+}
+
+.one-to-one-spacer {
+  flex: 1 1 auto;
+}
+
+h1 {
+  margin: 20px 0px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+
