@@ -16,7 +16,8 @@ import { TicketService, SnackbarService } from '../../../services/export-service
 })
 export class TicketCreateComponent implements OnInit {
 
-  ticket: ITicket = { id: null };
+  ticket: ITicket = { };
+  today: Date = new Date();
 
   @ViewChild('autosize', {static: false}) autosize: CdkTextareaAutosize;
 
@@ -27,8 +28,7 @@ export class TicketCreateComponent implements OnInit {
     private snackBarService: SnackbarService,
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   triggerResize() {
     this.ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
@@ -37,9 +37,10 @@ export class TicketCreateComponent implements OnInit {
   async createTicket() {
     try {
       const saveTicket = await this.ticketService.createTicket(this.ticket);
+      this.snackBarService.openSuccess(`Ticket # ${saveTicket.id} was created successfully.`);
       this.router.navigate(['/tickets/home']);
     } catch (error) {
-      this.snackBarService.openError(error)
+      this.snackBarService.openError(error);
     }
   }
 

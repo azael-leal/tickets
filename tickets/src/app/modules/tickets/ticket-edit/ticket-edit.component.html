@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>
-  Ticket #{{ data.id }}
+  Ticket # {{ data.id }}
   <mat-divider></mat-divider>
 </h1>
 
@@ -9,7 +9,7 @@
       <div class="col-3">
         <mat-form-field appearance="outline">
           <mat-label>Provider</mat-label>
-          <input matInput [required]="true" name="provider" id="provider" placeholder="Enter a provider"
+          <input matInput type="text" [required]="true" name="provider" id="provider" placeholder="Enter a provider"
             [(ngModel)]="ticket.provider">
         </mat-form-field>
       </div>
@@ -17,7 +17,7 @@
       <div class="col-3">
         <mat-form-field appearance="outline">
           <mat-label>Amount</mat-label>
-          <input matInput [required]="true" name="amount" id="amount" placeholder="Enter an amount"
+          <input matInput type="number" [required]="true" name="amount" id="amount" placeholder="Enter an amount"
             [(ngModel)]="ticket.amount">
         </mat-form-field>
       </div>
@@ -25,7 +25,7 @@
       <div class="col-3">
         <mat-form-field appearance="outline">
           <mat-label>Currency</mat-label>
-          <input matInput [required]="true" name="currency" id="currency" placeholder="Enter a currency"
+          <input matInput type="text" [required]="true" name="currency" id="currency" placeholder="Enter a currency"
             [(ngModel)]="ticket.currency">
         </mat-form-field>
       </div>
@@ -33,8 +33,8 @@
       <div class="col-3">
         <mat-form-field appearance="outline">
           <mat-label>Date</mat-label>
-          <input matInput [required]="true" name="date" id="date" placeholder="Pick a date" [(ngModel)]="ticket.date"
-            [matDatepicker]="datePicker">
+          <input matInput [required]="true" name="date" id="date" placeholder="Choose a date" [(ngModel)]="ticket.date"
+            [matDatepicker]="datePicker" [max]="today">
           <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
           <mat-datepicker #datePicker></mat-datepicker>
         </mat-form-field>
@@ -43,7 +43,7 @@
       <div class="col-12">
         <mat-form-field appearance="outline">
           <mat-label>Comment</mat-label>
-          <textarea matInput [required]="true" name="comment" id="comment" placeholder="Enter a comment"
+          <textarea matInput type="text" [required]="true" name="comment" id="comment" placeholder="Enter a comment"
             [(ngModel)]="ticket.comment" cdkTextareaAutosize #autosize="cdkTextareaAutosize"></textarea>
         </mat-form-field>
       </div>
@@ -52,7 +52,7 @@
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button mat-stroked-button [mat-dialog-close] color="warn">Back</button>
+  <button mat-stroked-button [mat-dialog-close] color="warn">Cancel</button>
 
   <span class="one-to-one-spacer"></span>
 
