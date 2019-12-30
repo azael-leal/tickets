@@ -4,7 +4,7 @@ import { MatTableDataSource, MatTable } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 
 // Interfaces
-import { ITickets } from '../../../interfaces/export-interfaces';
+import { ITicket } from '../../../interfaces/export-interfaces';
 
 // Services
 import { TicketService, SnackbarService } from '../../../services/export-services';
@@ -22,7 +22,7 @@ import { ConfirmDialogComponent } from '../../../shared/dialogs/confirm-dialog/c
 export class TicketsListComponent implements OnInit {
 
   displayedColumns = ['id', 'provider', 'amount', 'currency', 'date', 'comment', 'edit', 'delete'];
-  dataSource = new MatTableDataSource<ITickets>([]);
+  dataSource = new MatTableDataSource<ITicket>([]);
   @ViewChild(MatTable, {static: false}) matTable: MatTable<any>;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
@@ -36,25 +36,26 @@ export class TicketsListComponent implements OnInit {
     this.getTickets();
   }
 
-  getTickets(action?: string) {
+  async getTickets(action?: string) {
     try {
-      const tickets: ITickets[] = this.ticketService.getTickets();
+      const tickets: ITicket[] = await this.ticketService.getTickets();
       this.matchDataWithTable(tickets);
-      if (action === 'updateTable') { this.snackBarService.openSuccess('Table Updated'); }
+      if (action === 'refreshData') { this.snackBarService.openSuccess('The list of tickets has been refreshed.'); }
     } catch (error) {
       this.snackBarService.openError(error);
     }
   }
 
-  private matchDataWithTable(data: ITickets[]) {
-    this.dataSource = new MatTableDataSource<ITickets>(data);
+  private matchDataWithTable(data: ITicket[]) {
+    this.dataSource = new MatTableDataSource<ITicket>(data);
     this.dataSource.paginator = this.paginator;
-    // this.matTable.renderRows();
+    this.matTable.renderRows();
   }
 
   private async deleteTicket(ticketId: number) {
     try {
       const deleteTicket = await this.ticketService.deleteTicket(ticketId);
+      this.snackBarService.openSuccess(`The ticket # ${ticketId} was deleted successfully.`);
     } catch (error) {
       this.snackBarService.openError(error);
     }
@@ -64,14 +65,14 @@ export class TicketsListComponent implements OnInit {
     const deleteTicketDialog = this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: 'Delete Ticket',
-        message: `Are you sure you want to delete permanently the ticket #${ticketId}?`
+        message: `Are you sure you want to delete permanently the ticket # ${ticketId}?`
       }
     });
 
-    deleteTicketDialog.afterClosed().subscribe( result => {
+    deleteTicketDialog.afterClosed().subscribe( async result => {
       if (result) {
-        this.deleteTicket(ticketId);
-        this.getTickets();
+        await this.deleteTicket(ticketId);
+        await this.getTickets();
       }
     });
   }
@@ -81,8 +82,8 @@ export class TicketsListComponent implements OnInit {
       data: { id: ticketId }
     });
 
-    editTicketDialog.afterClosed().subscribe( result => {
-        this.getTickets();
+    editTicketDialog.afterClosed().subscribe( async result => {
+        await this.getTickets();
     });
   }
 

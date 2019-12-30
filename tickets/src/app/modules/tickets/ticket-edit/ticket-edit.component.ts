@@ -17,6 +17,7 @@ import { TicketService, SnackbarService } from 'src/app/services/export-services
 export class TicketEditComponent implements OnInit {
 
   ticket: ITicket = { id: null };
+  today: Date = new Date();
 
   @ViewChild('autosize', {static: false}) autosize: CdkTextareaAutosize;
 
@@ -28,15 +29,28 @@ export class TicketEditComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getTicket(this.data.id);
+  }
 
   triggerResize() {
     this.ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
   }
 
+  async getTicket(ticketId: number) {
+    try {
+      this.ticket = await this.ticketService.getTicket(ticketId);
+    } catch (error) {
+      console.log(error);
+      this.snackBarService.openError('An error has ocurred, please try again.');
+    }
+  }
+
   async updateTicket() {
     try {
-      const updateTicket = await this.ticketService.updateTicket(this.ticket);
+      const updateTicket = await this.ticketService.updateTicket(this.ticket.id, this.ticket);
+      this.snackBarService.openSuccess(`Ticket # ${this.ticket.id} was updated successfully.`);
+      this.dialog.close();
     } catch (error) {
       this.snackBarService.openError(error);
     }
