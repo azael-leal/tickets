@@ -29,6 +29,12 @@ h1 {
   margin: 20px 0px;
 }
 
+.required-message {
+  color: #f44336;
+  font-size: 11px;
+  margin-bottom: 20px;
+}
+
 mat-form-field {
   width: 100%;
 }
