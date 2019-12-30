@@ -42,7 +42,7 @@ export class TicketsListComponent implements OnInit {
       this.matchDataWithTable(tickets);
       if (action === 'refreshData') { this.snackBarService.openSuccess('The list of tickets has been refreshed.'); }
     } catch (error) {
-      this.snackBarService.openError(error);
+      this.snackBarService.openError('Something bad happened, please click the Refresh Data button.');
     }
   }
 
@@ -54,10 +54,10 @@ export class TicketsListComponent implements OnInit {
 
   private async deleteTicket(ticketId: number) {
     try {
-      const deleteTicket = await this.ticketService.deleteTicket(ticketId);
+      await this.ticketService.deleteTicket(ticketId);
       this.snackBarService.openSuccess(`The ticket # ${ticketId} was deleted successfully.`);
     } catch (error) {
-      this.snackBarService.openError(error);
+      this.snackBarService.openError(`An error has occurred while deleting the ticket # ${ticketId}, please try again.`);
     }
   }
 
@@ -70,10 +70,8 @@ export class TicketsListComponent implements OnInit {
     });
 
     deleteTicketDialog.afterClosed().subscribe( async result => {
-      if (result) {
-        await this.deleteTicket(ticketId);
-        await this.getTickets();
-      }
+      if (result) { await this.deleteTicket(ticketId); }
+      await this.getTickets();
     });
   }
 
