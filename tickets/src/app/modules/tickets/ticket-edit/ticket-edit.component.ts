@@ -41,18 +41,17 @@ export class TicketEditComponent implements OnInit {
     try {
       this.ticket = await this.ticketService.getTicket(ticketId);
     } catch (error) {
-      console.log(error);
-      this.snackBarService.openError('An error has ocurred, please try again.');
+      this.snackBarService.openError('An error has occurred, please try again.');
     }
   }
 
   async updateTicket() {
     try {
-      const updateTicket = await this.ticketService.updateTicket(this.ticket.id, this.ticket);
+      await this.ticketService.updateTicket(this.ticket.id, this.ticket);
       this.snackBarService.openSuccess(`Ticket # ${this.ticket.id} was updated successfully.`);
       this.dialog.close();
     } catch (error) {
-      this.snackBarService.openError(error);
+      this.snackBarService.openError('An error has occurred while updating, please try again.');
     }
   }
 

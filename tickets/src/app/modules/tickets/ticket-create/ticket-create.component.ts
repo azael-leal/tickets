@@ -40,7 +40,7 @@ export class TicketCreateComponent implements OnInit {
       this.snackBarService.openSuccess(`Ticket # ${saveTicket.id} was created successfully.`);
       this.router.navigate(['/tickets/home']);
     } catch (error) {
-      this.snackBarService.openError(error);
+      this.snackBarService.openError('An error has occurred while creating the ticket, please try again.');
     }
   }
 
