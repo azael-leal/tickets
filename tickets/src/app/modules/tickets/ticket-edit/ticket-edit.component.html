@@ -49,6 +49,12 @@
       </div>
     </div>
   </form>
+
+  <div class="row" *ngIf="form.invalid">
+    <div class="col-12 required-message">
+      <span>Fields with * are required.</span>
+    </div>
+  </div>
 </mat-dialog-content>
 
 <mat-dialog-actions>
